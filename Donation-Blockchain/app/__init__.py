@@ -14,39 +14,7 @@ global peers
 globals()["peers"] = []
 globals()["num_personas"] = -1
 globals()["num_personas"] = False
-
-parser = argparse.ArgumentParser()
-parser.parse_args()
-
-parser.add_argument("ip_cliente", help="Ip del cliente")
-parser.add_argument("puerto_cliente", help="Puerto del cliente")
-parser.add_argument("coordinador", help="Indica con True o False si es o no coordinador")
-parser.add_argument("--ip_coordinador", help="Ip del coordinador",action="store_true")
-parser.add_argument("--puerto_coordinador", help="Puerto del coordinador",action="store_true")
-
-args = parser.parse_args()
-if args.ip_cliente:
-    globals()["ip_cliente"] = args.ip_cliente
-else:
-    exit
-if args.ip_cliente:
-    globals()["puerto_cliente"] = args.puerto_cliente
-else:
-    exit
-if args.coordinador:
-    globals()["puerto_cliente"] = args.coordinador
-else:
-    globals()["nodo_coordinador"] = 'False'
-if args.ip_coordinador and globals()["nodo_coordinador"] == 'False':
-    globals()["ip_cliente"] = args.ip_cliente
-else:
-    exit
-if args.puerto_coordinador and globals()["nodo_coordinador"] == 'False':
-    globals()["puerto_cliente"] = args.puerto_cliente
-else:
-    exit
-
-"""
+    
 if len(sys.argv) < 4:
     print( "Inicialización fallida.")
     exit
@@ -59,7 +27,6 @@ else:
         globals()["nodo_coordinador"] = sys.argv[5]
     else:
         globals()["nodo_coordinador"] = 'False'
-"""
 
 app = Flask(__name__)
 

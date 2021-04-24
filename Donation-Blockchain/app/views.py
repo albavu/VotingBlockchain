@@ -2,6 +2,12 @@ from flask import render_template, request, redirect, jsonify, make_response, se
 from app import *
 from flask import jsonify
 
+"""
+Página de inicio de la aplicación cliente.
+Acepta métodos GET Y POST
+- En el Método GET, simplemente renderiza la página de inicio
+- En el Método POST, recoge los datos y los trata
+"""
 @app.route("/",methods=["GET","POST"])
 def index():
     print(globals()["peers"])
@@ -12,7 +18,13 @@ def index():
         globals()["num_personas"]= globals()["num_personas"] + 1
     return render_template("index.html",num_personas =globals()["num_personas"])
 
-@app.route("/join_network/<ip>/<port>")
+
+"""
+Añade a un nuevo nodo a la red y comunica al resto de nodos que tienen que añadir a ese nodo
+a su agenda
+Acepta métodos GET
+"""
+@app.route("/join_network/<ip>/<port>",methods=["GET"])
 def register_new_peers(ip,port):
 
     if ip == None or port == None:
